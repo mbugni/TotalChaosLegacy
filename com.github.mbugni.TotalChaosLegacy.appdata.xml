@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+  <id>com.github.mbugni.TotalChaosLegacy</id>
+  <launchable type="desktop-id">com.github.mbugni.TotalChaosLegacy.desktop</launchable>
+  <name>Total Chaos Legacy</name>
+  <summary>Retro Edition running on GZDoom Legacy</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>CC-BY-NC-SA-3.0</project_license>
+  <developer_name>wadaholic</developer_name>
+  <url type="homepage">https://www.moddb.com/mods/total-chaos</url>
+  <description>
+    <p>
+      Survival horror set on a remote island known as Fort Oasis.
+      Retro Edition has reduced texture resolution and poly-counts for improved performance.
+    </p>
+    <p>
+      The game runs using the GZDoom Legacy v3.8.2 engine to ensure more compatibility with old computers.
+    </p>
+  </description>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://wadaholic.files.wordpress.com/2017/03/city.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://wadaholic.files.wordpress.com/2017/02/brutal.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://wadaholic.files.wordpress.com/2017/04/edge.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://wadaholic.files.wordpress.com/2017/02/nope.png</image>
+    </screenshot>
+  </screenshots>
+  <content_rating type="oars-1.1">
+    <content_attribute id="violence-fantasy">intense</content_attribute>
+    <content_attribute id="violence-realistic">intense</content_attribute>
+    <content_attribute id="violence-bloodshed">moderate</content_attribute>
+    <content_attribute id="drugs-alcohol">moderate</content_attribute>
+    <content_attribute id="drugs-tobacco">moderate</content_attribute>
+  </content_rating>
+  <releases>
+    <release date="2022-08-08" version="1.40"/>
+    <release date="2021-01-23" version="1.32"/>
+    <release date="2018-12-09" version="1.0"/>
+    <release date="2018-11-14" version="0.97.6"/>
+    <release date="2018-11-08" version="0.97.4"/>
+  </releases>
+</component>

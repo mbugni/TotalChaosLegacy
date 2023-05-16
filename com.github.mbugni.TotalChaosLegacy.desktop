@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Total Chaos Legacy
+Comment=Retro Edition running on GZDoom Legacy
+Type=Application
+Icon=com.github.mbugni.TotalChaosLegacy
+Keywords=first;person;shooter;doom;
+Categories=Game;ActionGame;
+Exec=gzdoom.sh
+StartupWMClass=gzdoom
+PrefersNonDefaultGPU=true
