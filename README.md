@@ -44,7 +44,7 @@ $ sudo flatpak-builder --install --install-deps-from=flathub --force-clean build
 
 See [flatpak documentation](https://docs.flatpak.org/) for more info.
 
-The build can take a while (20 minutes or more), it depends on you machine performances. It compile and install the app, making it available for all users in your system.
+The build can take a while (20 minutes or more), it depends on your machine performances. It compile and install the app, making it available for all users in your system.
 
 ### 3 - Run the game
 You can run the game launching it from your favorite desktop, or manually by using the `flatpak` command:
@@ -57,7 +57,7 @@ $ flatpak run com.github.mbugni.TotalChaosLegacy
 - Skip the intro by pressing the `E` button
 
 #### GZDoom options
-Defaults for the GZDoom engine are in file `~/.var/app/com.github.mbugni.TotalChaosLegacy/.config/gzdoom/gzdoom.ini`
+ GZDoom engine defaults are in file `~/.var/app/com.github.mbugni.TotalChaosLegacy/.config/gzdoom/gzdoom.ini`
 
 |  Option       | Descritipn                                              |
 |---------------|---------------------------------------------------------|
