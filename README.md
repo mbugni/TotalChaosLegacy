@@ -39,7 +39,7 @@ $ git clone https://github.com/mbugni/TotalChaosLegacy.git
 From the project directory run the command:
 
 ```shell
-$ sudo flatpak-builder --install --install-deps-from=flathub --force-clean build com.github.mbugni.TotalChaosLegacy.yaml
+$ sudo flatpak-builder --install --install-deps-from=flathub --force-clean build io.github.mbugni.TotalChaosLegacy.yaml
 ```
 
 See [flatpak documentation](https://docs.flatpak.org/) for more info.
@@ -50,14 +50,14 @@ The build can take a while (20 minutes or more), it depends on your machine perf
 You can run the game launching it from your favorite desktop, or manually by using the `flatpak` command:
 
 ```shell
-$ flatpak run com.github.mbugni.TotalChaosLegacy
+$ flatpak run io.github.mbugni.TotalChaosLegacy
 ```
 
 #### Tips for gaming
 - Skip the intro by pressing the `E` button
 
 #### GZDoom options
- GZDoom engine defaults are in file `~/.var/app/com.github.mbugni.TotalChaosLegacy/.config/gzdoom/gzdoom.ini`
+ GZDoom engine defaults are in file `~/.var/app/io.github.mbugni.TotalChaosLegacy/.config/gzdoom/gzdoom.ini`
 
 |  Option       | Descritipn                                              |
 |---------------|---------------------------------------------------------|

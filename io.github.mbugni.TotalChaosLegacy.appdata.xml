@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
-  <id>com.github.mbugni.TotalChaosLegacy</id>
-  <launchable type="desktop-id">com.github.mbugni.TotalChaosLegacy.desktop</launchable>
+  <id>io.github.mbugni.TotalChaosLegacy</id>
+  <launchable type="desktop-id">io.github.mbugni.TotalChaosLegacy.desktop</launchable>
   <name>Total Chaos Legacy</name>
   <summary>Retro Edition running on GZDoom Legacy</summary>
   <metadata_license>CC0-1.0</metadata_license>
