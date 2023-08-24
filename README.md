@@ -39,7 +39,7 @@ $ git clone https://github.com/mbugni/TotalChaosLegacy.git
 From the project directory run the command:
 
 ```shell
-$ sudo flatpak-builder --install --install-deps-from=flathub --force-clean build io.github.mbugni.TotalChaosLegacy.yaml
+$ flatpak-builder --user --verbose --install --install-deps-from=flathub --force-clean build io.github.mbugni.TotalChaosLegacy.yaml
 ```
 
 See [flatpak documentation](https://docs.flatpak.org/) for more info.

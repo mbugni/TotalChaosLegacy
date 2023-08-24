@@ -24,17 +24,17 @@ modules:
       - -DLIB_SUFFIX=
     sources:
       - type: archive
-        url: https://github.com/FluidSynth/fluidsynth/archive/refs/tags/v2.3.2.tar.gz
-        sha256: cd610810f30566e28fb98c36501f00446a06fa6bae3dc562c8cd3868fe1c0fc7
+        url: https://github.com/FluidSynth/fluidsynth/archive/refs/tags/v2.3.3.tar.gz
+        sha256: 321f7d3f72206b2522f30a1cb8ad1936fd4533ffc4d29dd335b1953c9fb371e6
 
   - name: zmusic
     buildsystem: cmake-ninja
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
-      - type: git
-        url: https://github.com/ZDoom/ZMusic.git
-        commit: 75d2994b4b1fd6891b20819375075a2976ee34de
+      - type: archive
+        url: https://github.com/ZDoom/ZMusic/archive/refs/tags/1.1.12.tar.gz
+        sha256: da818594b395aa9174561a36362332b0ab8e7906d2e556ec47669326e67613d4
 
   - name: gzdoom-legacy
     buildsystem: cmake-ninja
@@ -50,10 +50,10 @@ modules:
       - type: script
         commands:
           - "[ ! -f ~/.config/gzdoom/gzdoom.ini ] && cp /app/share/games/doom/gzdoom_portable.ini ~/.config/gzdoom/gzdoom.ini"
-          - "gzdoom -file totalchaos.pk3 +fluid_patchset /app/share/games/doom/soundfonts/gzdoom.sf2 $@"
+          - "exec gzdoom -file totalchaos.pk3 +fluid_patchset /app/share/games/doom/soundfonts/gzdoom.sf2 $@"
         dest-filename: gzdoom.sh
     post-install:
-      - install -D gzdoom.sh /app/bin/gzdoom.sh
+      - install -Dm 755 gzdoom.sh /app/bin/gzdoom.sh
 
   - name: freedoom2
     buildsystem: simple
