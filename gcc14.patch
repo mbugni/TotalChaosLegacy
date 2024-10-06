@@ -1,0 +1,133 @@
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 21bf74b990..0ee97f031f 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -72,7 +72,7 @@ if( WIN32 )
+ 				add_definitions( -DNO_XINPUT )
+ 			endif()
+ 		else()
+-			include_directories( ${XINPUT_INCLUDE_DIR} )
++			include_directories( SYSTEM ${XINPUT_INCLUDE_DIR} )
+ 		endif()
+ 
+ 		find_library( DX_dinput8_LIBRARY dinput8
+@@ -145,7 +145,7 @@ else()
+ 				if( NOT DYN_GTK )
+ 					set( ZDOOM_LIBS ${ZDOOM_LIBS} ${GTK3_LIBRARIES} )
+ 				endif()
+-				include_directories( ${GTK3_INCLUDE_DIRS} )
++				include_directories( SYSTEM ${GTK3_INCLUDE_DIRS} )
+ 				link_directories( ${GTK3_LIBRARY_DIRS} )
+ 			else()
+ 				pkg_check_modules( GTK2 gtk+-2.0 )
+@@ -153,7 +153,7 @@ else()
+ 					if( NOT DYN_GTK )
+ 						set( ZDOOM_LIBS ${ZDOOM_LIBS} ${GTK2_LIBRARIES} )
+ 					endif()
+-					include_directories( ${GTK2_INCLUDE_DIRS} )
++					include_directories( SYSTEM ${GTK2_INCLUDE_DIRS} )
+ 					link_directories( ${GTK2_LIBRARY_DIRS} )
+ 				else()
+ 					set( NO_GTK ON )
+@@ -173,13 +173,13 @@ else()
+ 	# Non-Windows version also needs SDL except native OS X backend
+ 	if( NOT APPLE OR NOT OSX_COCOA_BACKEND )
+ 		find_package( SDL2 REQUIRED )
+-		include_directories( "${SDL2_INCLUDE_DIR}" )
++		include_directories( SYSTEM "${SDL2_INCLUDE_DIR}" )
+ 		set( ZDOOM_LIBS ${ZDOOM_LIBS} "${SDL2_LIBRARY}" )
+ 	endif()
+ 
+ 	find_path( FPU_CONTROL_DIR fpu_control.h )
+ 	if( FPU_CONTROL_DIR )
+-		include_directories( ${FPU_CONTROL_DIR} )
++		include_directories( SYSTEM ${FPU_CONTROL_DIR} )
+ 		add_definitions( -DHAVE_FPU_CONTROL )
+ 	endif()
+ endif()
+@@ -189,7 +189,7 @@ if( NOT NO_OPENAL )
+ 		find_package( OpenAL )
+ 		mark_as_advanced(CLEAR OPENAL_INCLUDE_DIR)
+ 		if( OPENAL_INCLUDE_DIR )
+-			include_directories( ${OPENAL_INCLUDE_DIR} )
++			include_directories( SYSTEM ${OPENAL_INCLUDE_DIR} )
+ 			mark_as_advanced(CLEAR OPENAL_LIBRARY)
+ 			if( OPENAL_LIBRARY )
+ 				set( ZDOOM_LIBS ${OPENAL_LIBRARY} ${ZDOOM_LIBS} )
+@@ -461,26 +461,26 @@ add_custom_target( revision_check ALL
+ 
+ message( STATUS "Fluid synth libs: ${FLUIDSYNTH_LIBRARIES}" )
+ set( ZDOOM_LIBS ${ZDOOM_LIBS} "${ZLIB_LIBRARIES}" "${JPEG_LIBRARIES}" "${BZIP2_LIBRARIES}" "${GME_LIBRARIES}" "${CMAKE_DL_LIBS}" )
+-include_directories( "${ZLIB_INCLUDE_DIR}" "${BZIP2_INCLUDE_DIR}" "${LZMA_INCLUDE_DIR}" "${JPEG_INCLUDE_DIR}" "${GME_INCLUDE_DIR}" )
++include_directories( SYSTEM "${ZLIB_INCLUDE_DIR}" "${BZIP2_INCLUDE_DIR}" "${LZMA_INCLUDE_DIR}" "${JPEG_INCLUDE_DIR}" "${GME_INCLUDE_DIR}" )
+ 
+ if( ${HAVE_VM_JIT} )
+ 	add_definitions( -DHAVE_VM_JIT )
+-	include_directories( "${ASMJIT_INCLUDE_DIR}" )
++	include_directories( SYSTEM "${ASMJIT_INCLUDE_DIR}" )
+ 	set( ZDOOM_LIBS ${ZDOOM_LIBS} "${ASMJIT_LIBRARIES}")
+ endif()
+ 
+ if( SNDFILE_FOUND )
+     set( ZDOOM_LIBS ${ZDOOM_LIBS} "${SNDFILE_LIBRARIES}" )
+-    include_directories( "${SNDFILE_INCLUDE_DIRS}" )
++    include_directories( SYSTEM "${SNDFILE_INCLUDE_DIRS}" )
+ endif()
+ if( MPG123_FOUND )
+     set( ZDOOM_LIBS ${ZDOOM_LIBS} "${MPG123_LIBRARIES}" )
+-    include_directories( "${MPG123_INCLUDE_DIR}" )
++    include_directories( SYSTEM "${MPG123_INCLUDE_DIR}" )
+ endif()
+ if( NOT DYN_FLUIDSYNTH )
+ 	if( FLUIDSYNTH_FOUND )
+ 		set( ZDOOM_LIBS ${ZDOOM_LIBS} "${FLUIDSYNTH_LIBRARIES}" )
+-		include_directories( "${FLUIDSYNTH_INCLUDE_DIR}" )
++		include_directories( SYSTEM "${FLUIDSYNTH_INCLUDE_DIR}" )
+ 	endif()
+ endif()
+ 
+@@ -609,7 +609,7 @@ add_custom_command( OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/sc_man_scanner.h
+ 	COMMAND re2c --no-generation-date -s -o ${CMAKE_CURRENT_BINARY_DIR}/sc_man_scanner.h ${CMAKE_CURRENT_SOURCE_DIR}/sc_man_scanner.re
+ 	DEPENDS re2c ${CMAKE_CURRENT_SOURCE_DIR}/sc_man_scanner.re )
+ 
+-include_directories( ${CMAKE_CURRENT_BINARY_DIR} )
++include_directories( SYSTEM ${CMAKE_CURRENT_BINARY_DIR} )
+ 
+ if( DYN_SNDFILE)
+ 	add_definitions( -DHAVE_SNDFILE -DDYN_SNDFILE )
+@@ -1332,7 +1332,9 @@ endif()
+ 
+ target_link_libraries( zdoom ${ZDOOM_LIBS} gdtoa dumb lzma )
+ 
+-include_directories( .
++include_directories(
++	BEFORE
++	.
+ 	g_statusbar
+ 	g_shared
+ 	g_inventory
+diff --git a/src/d_dehacked.cpp b/src/d_dehacked.cpp
+index 5124c32df2..2d25a69331 100644
+--- a/src/d_dehacked.cpp
++++ b/src/d_dehacked.cpp
+@@ -63,7 +63,7 @@
+ #include "thingdef.h"
+ #include "v_text.h"
+ #include "backend/vmbuilder.h"
+-#include "types.h"
++#include "scripting/types.h"
+ #include "m_argv.h"
+ #include "actorptrselect.h"
+ 
+diff --git a/src/sound/oplsynth/OPL3.cpp b/src/sound/oplsynth/OPL3.cpp
+index 291c245422..cc4850deee 100644
+--- a/src/sound/oplsynth/OPL3.cpp
++++ b/src/sound/oplsynth/OPL3.cpp
+@@ -49,6 +49,7 @@
+ #include "opl.h"
+ #include "m_random.h"
+ #include "xs_Float.h"
++#include <limits>
+ 
+ static FRandom pr_opl3;
+ 

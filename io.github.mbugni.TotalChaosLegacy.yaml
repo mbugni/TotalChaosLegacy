@@ -1,6 +1,6 @@
 app-id: io.github.mbugni.TotalChaosLegacy
 runtime: org.freedesktop.Platform
-runtime-version: '22.08'
+runtime-version: '24.08'
 sdk: org.freedesktop.Sdk
 command: gzdoom.sh
 finish-args:
@@ -42,12 +42,15 @@ modules:
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
       - -DSEND_ANON_STATS=OFF
+    build-options:
+      env:  
+        CXXFLAGS: -Wno-error=template-id-cdtor -Wno-template-id-cdtor
     sources:
       - type: archive
         url: https://zdoom.org/files/gzdoom/src/gzdoom-src-g3.8.2_legacy.zip
         sha256: 0c3af7b0af6b59f1ecbcc50e4fc0f70d6b1a33f554f63998a421bbc4da2913e6
       - type: patch
-        path: gcc12.patch
+        path: gcc14.patch
       - type: script
         commands:
           - '[ ! -f ~/.config/gzdoom/gzdoom.ini ] && cp /app/share/games/doom/gzdoom_portable.ini ~/.config/gzdoom/gzdoom.ini'
